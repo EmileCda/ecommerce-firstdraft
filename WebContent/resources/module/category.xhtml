@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<ui:composition>
+
+	<h:panelGroup id="panelCategoryr">
+
+		<h:panelGrid>
+			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+
+			<h:inputText id="nom" value="#{addCategoryBean.categorie.name}"
+				required="true" a:placeholder="#{msg['add-category.nom']}"
+				requiredMessage="#{msg['add-category.prompt.nom']}">
+				<f:validateLength minimum="2" maximum="20" />
+				<f:validateRegex pattern="^[a-zA-Z-\s]*"></f:validateRegex>
+			</h:inputText>
+			<h:message for="nom" style="color:red"></h:message>
+
+			<h:inputText id="discount"
+				value="#{addCategoryBean.categorie.discount}" required="true"
+				a:placeholder="#{msg['add-category.discount']}"
+				requiredMessage="#{msg['add-category.prompt.discount']}">
+			</h:inputText>
+			<h:message for="discount" style="color:red"></h:message>
+
+			<h:inputText id="cumulable"
+				value="#{addCategoryBean.categorie.discountCumulative}"
+				a:placeholder="#{msg['add-category.cumulable']}" required="true"
+				requiredMessage="#{msg['add-category.prompt.cumulable']}">
+				<f:validateLength minimum="8" maximum="15" />
+			</h:inputText>
+			<h:message for="cumulable" style="color:red"></h:message>
+
+			<h:inputText id="photo" value="#{addCategoryBean.categorie.picture}"
+				a:placeholder="#{msg['add-category.photo']}" required="true"
+				requiredMessage="#{msg['add-category.prompt.photo']}">
+				<f:validateLength minimum="8" maximum="100" />
+			</h:inputText>
+			<h:message for="photo" style="color:red"></h:message>
+
+
+		</h:panelGrid>
+
+	</h:panelGroup>
+
+
+
+
+
+
+</ui:composition>
+
+</html>
+
+

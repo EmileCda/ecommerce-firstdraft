@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+
+	<div class="row-div">
+		<p>#{adminBean.promptStatus}</p>
+	</div>
+	<h4>Catégorie : #{itemManagementBean.currentCategorie.name}</h4>
+
+	<h:form>
+
+		<h:dataTable id="datatable"
+			value="#{itemManagementBean.currentCategorie.itemList}" var="oneItem"
+			styleClass="category-table" headerClass="category-table-header"
+			rowClasses="category-table-odd-row,category-table-even-row">
+
+
+
+			<h:column rendered ="#{loginBean.isClient}">
+				<!-- column header -->
+				<f:facet name="header">#{msg['item-by-category.add']}</f:facet>
+				<!-- row record -->
+				<h:selectBooleanCheckbox value="#{itemManagementBean.articleChecked}" />
+			</h:column>
+			<h:column rendered ="#{loginBean.isStoreKeeper}">
+				<f:facet name="header">#{msg['item-by-category.id']}</f:facet>
+				<h:outputText value="#{oneItem.id}" />
+			</h:column>
+
+			<h:column>
+<!-- 				<f:facet name="header">#{msg['item-by-category.name']}</f:facet> -->
+				<f:facet name="header">#{loginBean.isClient}</f:facet>
+				<h:outputText value="#{oneItem.name}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">#{msg['item-by-category.description']}</f:facet>
+				<h:outputText value="#{oneItem.description}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">#{msg['item-by-category.price']}</f:facet>
+				<h:outputText value="#{oneItem.price}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">#{msg['item-by-category.discount']}</f:facet>
+				<h:outputText value="#{oneItem.discount}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">#{msg['item-by-category.inventory']}</f:facet>
+				<h:outputText value="#{oneItem.inventory}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">#{msg['item-by-category.isSalable']}</f:facet>
+				<h:outputText value="#{oneItem.isSalable}" />
+			</h:column>
+
+			<h:column >
+				<f:facet name="header">#{msg['item-by-category.picture']}</f:facet>
+				<h:outputText value="#{oneItem.picture}" />
+			</h:column>
+
+			<h:column >
+				<f:facet name="header">#{msg['item-by-category.video']}</f:facet>
+				<h:outputText value="#{oneItem.video}" />
+			</h:column>
+			<h:column rendered ="#{loginBean.isStoreKeeper}">
+				<f:facet name="header">#{msg['item-by-category.add']}</f:facet>
+				<h:commandLink value="#{msg['category-list.add']}"
+					action="#{itemManagementBean.addItem(oneItem)}" />
+			</h:column>
+			<h:column rendered ="#{loginBean.isStoreKeeper}">
+				<f:facet name="header">#{msg['item-by-category.update']}</f:facet>
+				<h:commandLink value="#{msg['category-list.update']}"
+					action="#{itemManagementBean.updateItem(oneItem)}" />
+			</h:column>
+			<h:column rendered ="#{loginBean.isStoreKeeper}">
+				<f:facet name="header">#{msg['item-by-category.delete']}</f:facet>
+				<h:commandLink value="#{msg['category-list.delete']}"
+					action="#{itemManagementBean.deleteItem(oneItem)}" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
+</ui:composition>
+</html>

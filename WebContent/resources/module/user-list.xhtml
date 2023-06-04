@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+
+	<div class="row-div">
+		<p>#{adminBean.promptStatus}</p>
+	</div>
+	<h4>#{msg['userlist.title']}</h4>
+
+
+	<h:dataTable id="datatable" value="#{adminBean.userList}" var="oneUser"
+		styleClass="user-table" headerClass="user-table-header"
+		rowClasses="user-table-odd-row,user-table-even-row">
+
+		<h:column>
+			<!-- column header -->
+			<f:facet name="header">#{msg['userlist.gender']}</f:facet>
+			<!-- row record -->
+			<h:outputText value="#{oneUser.gender.title}" />
+		</h:column>
+
+		<h:column>
+			<!-- column header -->
+			<f:facet name="header">#{msg['userlist.firsname']}</f:facet>
+			<!-- row record -->
+			<h:outputText value="#{oneUser.firstname}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['userlist.lastname']}</f:facet>
+			<h:outputText value="#{oneUser.lastname}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['userlist.email']}</f:facet>
+			<h:outputText value="#{oneUser.email}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['userlist.password']}</f:facet>
+			<h:outputText value="#{oneUser.password}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['userlist.profile']}</f:facet>
+			<h:outputText value="#{oneUser.profile.name}">
+			</h:outputText>
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['userlist.birthdate']}</f:facet>
+			<h:outputText value="#{oneUser.birthdate}">
+				<f:convertDateTime pattern="E, dd MMMM yyyy"></f:convertDateTime>
+			</h:outputText>
+		</h:column>
+
+
+		<h:column>
+			<f:facet name="header">#{msg['userlist.update']}</f:facet>
+			<h:commandLink value="#{msg['userlist.update']}"
+				action="#{adminBean.updateUser(oneUser)}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">#{msg['userlist.delete']}</f:facet>
+			<h:commandLink value="#{msg['userlist.delete']}"
+				action="#{adminBean.deleteUser(oneUser)}" />
+		</h:column>
+
+	</h:dataTable>
+
+</ui:composition>
+</html>

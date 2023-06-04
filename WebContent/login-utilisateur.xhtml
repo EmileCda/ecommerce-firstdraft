@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Home</title>
+</head>
+<ui:composition template="/resources/template/main-template.xhtml">
+	<ui:define name="main">
+		<f:view>
+
+			<h2>#{msg['home.title']}</h2>
+
+			<h:graphicImage library="images" name="homepage.jpg" class="homePage" />
+			<h:form>
+
+				<div class="main-container">
+					<div class="row-div">
+						<h:inputText value="#{loginBean.user.email}" required="true"
+							a:placeholder="#{msg['connection.email']}"
+							requiredMessage="#{msg['connection.prompt.email']}" id="email"
+							class="input-text" />
+						<h:message for="email" />
+					</div>
+					<div class="row-div">
+						<h:inputText value="#{loginBean.user.password}" required="true"
+							a:placeholder="mot de passe"
+							requiredMessage="#{msg['connection.prompt.password']}"
+							id="password" class="input-text" />
+						<h:message for="password" />
+					</div>
+					<div class="row-div">
+						<p>#{loginBean.promptStatus}</p>
+					</div>
+					<div class="row-div">
+
+						<h:commandButton id="submitConnection"
+							value="#{msg['connection.submit']}" styleClass="submit-button"
+							action="#{loginBean.checkUser}" />
+
+
+					</div>
+					<div class="row-div message">
+						<h:link value="#{msg['connection.not-subscibre-yet']}"
+							outcome="add-utilisateur.xhtml" />
+					</div>
+				</div>
+
+
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
+
+</html>

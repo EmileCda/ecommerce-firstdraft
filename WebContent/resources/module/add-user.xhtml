@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+	<h3>Login</h3>
+	<div class="row-div">
+
+		<h:inputText value="#{addCostumerBean.costumer.email}" required="true"
+			a:placeholder="#{msg['login.email']}"
+			requiredMessage="#{msg['login.prompt.email']}" id="LoginEmail"
+			class="input-text" />
+		<h:message for="LoginEmail" />
+	</div>
+	<div class="row-div">
+		<h:inputText value="#{addCostumerBean.costumer.password}" required="true"
+			a:placeholder="#{msg['login.password']}"
+			requiredMessage="#{msg['login.prompt.password']}" id="loginPassword"
+			class="input-text" />
+<!-- 		<f:validateLength minimum="8" maximum="30" /> -->
+<!-- 		<f:validateRegex pattern="^[a-z]{1,}[A-Z]{1,}[0-9]{1,}[@%!-+?]{1,}*"></f:validateRegex> -->
+		<h:message for="loginPassword" />
+	</div>
+
+	<div class="row-div">
+		<h:inputText value="#{addCostumerBean.passwordRepeat}" required="true"
+			a:placeholder="#{msg['login.password']}"
+			requiredMessage="#{msg['login.prompt.password']}" id="passwordRepeat"
+			class="input-text" />
+		<h:message for="passwordRepeat" />
+	</div>
+
+
+</ui:composition>
+</html>

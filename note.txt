@@ -1,0 +1,40 @@
+Adresse 			: CRUD ok
+Article 		: CRUD ok check onetomany ok 
+ArticlePanier  : CRUD ok
+CartePaiement  CRUD baddredine ok 
+Categorie:  CRUD ok 
+Commande:  CRUD baddredine ok
+Commentaire CRUD ok
+LigneDeCommande CRUD baddredine ok
+Params	: CRUD ok 
+User 			: CRUD ok 
+
+!!! faut-il ajouter la partie Control pour Params ? (pas besoin) 
+---------------------------------------------
+teste des relations onetoone onetomany
+A faire : les relations one to one
+
+Adresse 		: baddredine  ok	
+Article 		: baddredine  ok
+ArticlePanier : baddredine ok
+CartePaiement  : baddredine ok
+Categorie:   : baddredine ok
+Commande:    relation ok 
+Commentaire  : emile  ok
+LigneDeCommande : emile  ok
+Params	:  : emile  ok
+User 		 : emile  ok
+----------------------------------
+test avec IHM 
+
+css : création baddredine  ok
+css : intégration emile 50% fait 
+connexion ok 
+delete user : baddredine  ok 
+fonction affichier welcome+ profile + prénom (ok)
+deconnexion : fait  
+add client ok : reste à faire la feuille de style
+add from Manager : ok 
+Catégorie / produit baddredine  ok
+Add article panier baddredine  ok 30%
+

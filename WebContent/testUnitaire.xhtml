@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    
+    <ui:composition template="/resources/template/main-template.xhtml">
+	<ui:define name="main">
+      <h3>JSF sans .</h3>
+      <h:outputText value="#{testBean.doubleVar}" >
+      </h:outputText>
+      <h3>JSF f convert number example.</h3>
+      Amount minFractionDigits="2": 
+      <h:outputText value="#{testBean.doubleVar}" >
+        <f:convertNumber minFractionDigits="2" />
+      </h:outputText>
+      <br/>
+      Amount pattern="#0.00": 
+      <h:outputText value="#{testBean.doubleVar}" >
+        <f:convertNumber pattern="#0.00" />
+      </h:outputText>
+      <br/>
+      Amount currencySymbol="$": 
+      <h:outputText value="#{testBean.doubleVar}" >
+        <f:convertNumber currencySymbol="$" type="currency" />
+      </h:outputText>
+      <br/>
+      Amount type="percent": 
+      <h:outputText value="#{testBean.doubleVar}" >
+<!--         <f:convertNumber pattern="#0%" /> -->
+      </h:outputText>
+
+
+      <h3>JSF sans .</h3>
+      <h:outputText value="#{testBean.floatVar}" >
+      </h:outputText>
+      <h3>JSF f convert number example.</h3>
+      Amount minFractionDigits="2": 
+      <h:outputText value="#{testBean.floatVar}" >
+        <f:convertNumber minFractionDigits="2" />
+      </h:outputText>
+      <br/>
+      Amount pattern="#0.000": 
+      <h:outputText value="#{testBean.floatVar}" >
+        <f:convertNumber pattern="#0.000" />
+      </h:outputText>
+      <br/>
+      Amount currencySymbol="$": 
+      <h:outputText value="#{testBean.floatVar}" >
+        <f:convertNumber currencySymbol="$" type="currency" />
+      </h:outputText>
+      <br/>
+      Amount type="percent": 
+      <h:outputText value="#{testBean.floatVar}" >
+        <f:convertNumber type="percent" />
+      </h:outputText>
+
+	</ui:define>
+</ui:composition> 
+</html>

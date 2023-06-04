@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/template/main-template.xhtml">
+	<ui:define name="main">
+		<f:view>
+			<ui:fragment rendered="#{!loginBean.isClient}">
+
+				<h2>#{msg['procurement.management.not-client']}</h2>
+					<h:form>
+
+				<div class="button-group">
+					<div class="row-div message">
+						<h:commandLink action="/login-utilisateur.xhtml"
+							class="push-button">
+							<h:outputText value="#{msg['home.connection']}"></h:outputText>
+						</h:commandLink>
+
+					</div>
+
+					<div class="row-div message">
+						<h:commandLink action="/add-utilisateur.xhtml" class="push-button">
+							<h:outputText value="#{msg['home.subscibre']}"></h:outputText>
+						</h:commandLink>
+
+					</div>
+				</div>
+			</h:form>
+			</ui:fragment>
+			<ui:fragment rendered="#{loginBean.isClient}">
+				<h:form>
+					<h2>#{msg['procurement.management.title']}</h2>
+					<h:selectOneMenu value="#{itemManagementBean.categorieId}"
+						onchange="submit()"
+						valueChangeListener="#{itemManagementBean.updateCurrentCategorie}">
+						<f:selectItems value="#{itemManagementBean.categorieList}"
+							var="oneCat" itemValue="#{oneCat.id}" itemLabel="#{oneCat.name}" />
+					</h:selectOneMenu>
+				</h:form>
+
+				<ui:include src="/resources/module/item-by-category-client.xhtml" />
+			</ui:fragment>
+
+
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

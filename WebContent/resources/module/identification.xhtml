@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+	
+	<div class="row-div">
+
+		<h:inputText value="#{addCostumerBean.costumer.firstname}" required="true"
+			a:placeholder="#{msg['login.firstname']}"
+			requiredMessage="#{msg['login.prompt.firstname']}" id="firstname"
+			class="input-text" />
+		<h:message for="firstname" />
+	</div>
+	<div class="row-div">
+		<h:inputText value="#{addCostumerBean.costumer.lastname}" required="true"
+			a:placeholder="#{msg['login.lastname']}"
+			requiredMessage="#{msg['login.prompt.lastname']}" id="lastname"
+			class="input-text" />
+		<h:message for="lastname" />
+	</div>
+
+	<div class="row-div">
+		<h:inputText value="#{addCostumerBean.birthDateString}" required="true"
+			a:placeholder="#{msg['login.birthdate']}"
+			requiredMessage="#{msg['login.prompt.birthdate']}" id="birthdate"
+			class="input-text" />
+		<h:message for="birthdate" />
+	</div>
+
+	<div class="row-div">
+		<h:inputText value="#{addCostumerBean.costumer.phoneNumber}" required="true"
+			a:placeholder="#{msg['login.phoneNumber']}"
+			requiredMessage="#{msg['login.prompt.phoneNumber']}" id="phoneNumber"
+			class="input-text" />
+		<h:message for="phoneNumber" />
+	</div>
+
+	<div class="row-div">
+		<h:commandButton id="GenUser"
+			value="#{msg['login.create.user']}" styleClass="submit-button"
+			action="#{addCostumerBean.generateUser}" />
+
+		<h:commandButton id="CreateUser"
+			value="#{msg['connection.submit']}" styleClass="submit-button"
+			action="#{addCostumerBean.add}" />
+	</div>
+
+</ui:composition>
+</html>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+
+	<div class="row-div">
+		<p>#{adminBean.promptStatus}</p>
+	</div>
+	<h4>#{msg['userlist.title']}</h4>
+
+
+	<h:dataTable id="datatable" value="#{itemManagementBean.categorieList}" var="oneCat"
+		styleClass="category-table" headerClass="category-table-header"
+		rowClasses="category-table-odd-row,category-table-even-row">
+
+		<h:column>
+			<!-- column header -->
+			<f:facet name="header">#{msg['category-list.id']}</f:facet>
+			<!-- row record -->
+			<h:outputText value="#{oneCat.id}" />
+		</h:column>
+
+		<h:column>
+			<!-- column header -->
+			<f:facet name="header">#{msg['category-list.name']}</f:facet>
+			<!-- row record -->
+			<h:outputText value="#{oneCat.name}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['category-list.discount']}</f:facet>
+			<h:outputText value="#{oneCat.discount}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['category-list.isCumulable']}</f:facet>
+			<h:outputText value="#{oneCat.discountCumulative}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['category-list.picture']}</f:facet>
+			<h:outputText value="#{oneCat.picture}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['category-list.item']}</f:facet>
+			<h:dataTable id="datatable" value="#{oneCat.itemList}" var="oneItem">
+				<h:column>
+					<f:facet name="header">#{msg['category-list.item.nom']}</f:facet>
+					<h:outputText value="#{oneItem.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg['category-list.item.prix']}</f:facet>
+					<h:outputText value="#{oneItem.price}" >
+						<f:convertNumber type="currency" />
+					</h:outputText>
+					
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg['category-list.item.stock']}</f:facet>
+					<h:outputText value="#{oneItem.inventory}%" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg['category-list.item.discount']}</f:facet>
+					<h:outputText value="#{oneItem.discount}%" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg['category-list.item.photo']}</f:facet>
+					<h:outputText value="#{oneItem.picture}" />
+				</h:column>
+			</h:dataTable>
+
+
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['category-list.update']}</f:facet>
+			<h:commandLink value="#{msg['category-list.update']}"
+				action="#{itemManagementBean.updateCategorie(oneCat)}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">#{msg['category-list.delete']}</f:facet>
+			<h:commandLink value="#{msg['category-list.delete']}"
+				action="#{itemManagementBean.deleteCategory(oneCat)}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">#{msg['category-list.item-management']}</f:facet>
+			<h:commandLink value="#{msg['category-list.item-management']}"
+				action="#{itemManagementBean.updateItem(oneCat)}" />
+		</h:column>
+
+	</h:dataTable>
+
+</ui:composition>
+</html>

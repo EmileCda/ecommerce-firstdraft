@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+	<fieldset class="fieldset">
+		<legend>
+			<h:outputLabel value="#{msg['add-category.cumulable']}" />
+		</legend>
+		<h:inputText id="nom" value="#{addCategoryBean.categorie.name}"
+			required="true" a:placeholder="#{msg['add-category.nom']}"
+			requiredMessage="#{msg['add-category.prompt.nom']}">
+			<f:validateLength minimum="2" maximum="20" />
+		</h:inputText>
+		<h:message for="nom" style="color:red"></h:message>
+
+		<h:inputText id="discount"
+			value="#{addCategoryBean.categorie.discount}"
+			required="true"
+			a:placeholder="#{msg['add-category.discount']}"
+			requiredMessage="#{msg['add-category.prompt.discount']}">
+			<f:convertNumber integerOnly="true" type="number" />
+		</h:inputText>
+		<h:message for="discount" style="color:red"></h:message>
+
+
+		<h:panelGrid columns="2" cellpadding="2" cellspacing="2">
+			<h:selectOneRadio id="discount-cumulable"  required="true"
+				value="#{addCategoryBean.cumulativeDiscount}"
+				requiredMessage="#{msg['add-category.prompt.cumulable']}">
+				<f:selectItem
+					itemLabel="#{msg['add-category.discount-non-cumulable']}"
+					itemValue="#{addCategoryBean.falseValue}" />
+				<f:selectItem itemLabel="#{msg['add-category.discount-cumulable']}"
+					itemValue="#{addCategoryBean.trueValue}" />
+			</h:selectOneRadio>
+		</h:panelGrid>
+
+
+	</fieldset>
+	<h:message for="discount-cumulable" style="color:red"></h:message>
+
+	<h:inputText id="photo" value="#{addCategoryBean.categorie.picture}"
+		a:placeholder="#{msg['add-category.photo']}" required="true"
+		requiredMessage="#{msg['add-category.prompt.photo']}">
+		<f:validateLength minimum="8" maximum="100" />
+	</h:inputText>
+	<h:message for="photo" style="color:red"></h:message>
+
+	<div class="row-div">
+		<p>#{AddCategoryBean.promptStatus}</p>
+	</div>
+
+
+	<h:form>
+		<div class="button-group">
+			<div class="row-div message">
+				<h:commandLink action="#{addCategoryBean.addCategorie}"
+					class="push-button">
+					<h:outputText value="#{msg['add-category.add']}"></h:outputText>
+				</h:commandLink>
+
+			</div>
+			<div class="row-div message">
+
+				<h:commandLink action="#{addCategoryBean.cheatCode}"
+					class="push-button">
+					<h:outputText value="#{msg['cheat.name']}"></h:outputText>
+				</h:commandLink>
+
+			</div>
+		</div>
+	</h:form>
+</ui:composition>
+</html>
+

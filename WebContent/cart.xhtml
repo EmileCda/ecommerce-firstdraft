@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/resources/template/main-template.xhtml">
+
+	<ui:define name="main">
+		<f:view>
+			<h:form>
+
+				<h:dataTable id="cartTable" value="#{loginBean.user.cartItemList}"
+					var="oneCartItem" styleClass="cartTable"
+					headerClass="cartTable-header"
+					rowClasses="cartTable-odd-row,cartTable-even-row">
+					<h:column>
+						<f:facet name="header">#{msg['cart.quantity']}</f:facet>
+						<h:inputText value="#{oneCartItem.quantity}" size="3">
+							<f:convertNumber integerOnly="true" type="number" />
+						</h:inputText>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">#{msg['cart.prixBrute']}</f:facet>
+						<h:outputText size="3" style="display:block;width:100px"
+							value="#{oneCartItem.quantity * oneCartItem.article.price}"><f:convertNumber minFractionDigits="2" currencySymbol="€" type="currency" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['cart.reduction']}</f:facet>
+						<h:outputText size="3" style="display:block;width:100px"
+							value="#{oneCartItem.article.discount
+							* oneCartItem.quantity 
+							*oneCartItem.article.price/100}"><f:convertNumber minFractionDigits="2"  currencySymbol="€" type="currency" />
+						</h:outputText>
+
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">#{msg['cart.nom']}</f:facet>
+						<h:outputLabel value="#{oneCartItem.article.name}" />
+
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['cart.description']}</f:facet>
+						<h:outputLabel value="#{oneCartItem.article.description}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['cart.prix']}</f:facet>
+						<h:outputText value="#{oneCartItem.article.price}"><f:convertNumber minFractionDigits="2"  currencySymbol="€" type="currency" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['cart.discount']}</f:facet>
+<!-- 						<h:outputText value="#{oneCartItem.article.discount}"/> -->
+						<h:outputText value="-#{oneCartItem.article.discount}%">
+						
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['cart.stock']}</f:facet>
+						<h:outputLabel value="#{oneCartItem.article.inventory}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['cart.salable']}</f:facet>
+						<h:outputLabel value="#{oneCartItem.article.isSalable}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['cart.photo']}</f:facet>
+						<h:outputLabel value="#{oneCartItem.article.picture}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['cart.video']}</f:facet>
+						<h:outputLabel value="#{oneCartItem.article.video}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['cart.delete-item']}</f:facet>
+						<h:commandLink value="#{msg['cart.delete-item']}"
+							action="#{itemManagementBean.deleteItem(oneCartItem)}" />
+					</h:column>
+				</h:dataTable>
+
+			</h:form>
+
+<div class="button-group">
+			<h:form>
+				<h:commandLink value="#{msg['cart.calculate']}" 
+				 class="push-button" 	action="#{itemManagementBean.calculateOrder}" />
+
+				<h:commandLink value="#{msg['cart.validate']}"	
+				class="push-button" 
+				 action="/order.xhtml" />
+
+
+
+			</h:form>
+	</div>
+		</f:view>
+
+	</ui:define>
+</ui:composition>
+</html>
